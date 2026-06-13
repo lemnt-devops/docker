@@ -1,0 +1,4 @@
+mysql/data
+xxl-job/logs
+redis/data
+nacos/logs
