@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  xxl-job-admin:
+    image: xuxueli/xxl-job-admin:2.4.0
+    container_name: xxl-job-admin
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://192.168.150.252:3306/dsp-job?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: sohuglobal
+      XXL_JOB_ACCESS_TOKEN: xxl-job
+    volumes:
+      - ./logs/:/data/applogs
+    ports:
+      - "9900:8080"
+    restart: always

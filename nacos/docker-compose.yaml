@@ -1,0 +1,19 @@
+services:
+  nacos-server:
+    image: nacos/nacos-server:v3.2.1
+    container_name: nacos-server
+    env_file:
+      - ./env/nacos-standalone-mysql.env
+    volumes:
+      - ./logs/:/home/nacos/logs
+    ports:
+      - "8084:8080"
+      - "8848:8848"
+      - "9848:9848"
+    restart: always
+    networks:
+      - ad-net
+
+networks:
+  ad-net:
+    external: true

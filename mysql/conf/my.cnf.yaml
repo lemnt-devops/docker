@@ -1,0 +1,6 @@
+[mysqld]
+server-id=1
+log-bin=mysql-bin
+binlog_format=row
+max_connections=1000
+innodb_buffer_pool_size=1G

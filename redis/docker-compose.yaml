@@ -1,0 +1,16 @@
+services:
+  redis:
+    image: redis:7.2
+    container_name: redis7
+    restart: always
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes --requirepass 123456
+    volumes:
+      - ./data:/data
+    networks:
+      - ad-net
+
+networks:
+  ad-net:
+    external: true
