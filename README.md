@@ -11,6 +11,7 @@
 | Logstash | 8.11.0 | 5001 (tcp) | 日志采集与传输 |
 | Kibana | 8.11.0 | 5601 | 日志可视化 |
 | XXL-Job | 2.4.0 | 9900 | 分布式任务调度 |
+| MinIO | latest | 9000 / 9001 | S3 兼容对象存储 |
 
 ## 目录结构
 
@@ -36,6 +37,9 @@ docker/
 │   ├── docker-compose.yaml
 │   ├── env/
 │   └── logs/         # 日志（已 gitignore）
+├── minio/            # MinIO 对象存储
+│   ├── docker-compose.yaml
+│   └── data/         # 对象数据（已 gitignore）
 └── README.md
 ```
 
@@ -70,6 +74,9 @@ cd logstash && docker compose up -d
 
 # XXL-Job（依赖 MySQL，需先创建 dsp-job 库）
 cd xxl-job && docker compose up -d
+
+# MinIO
+cd minio && docker compose up -d
 ```
 
 ### 停止服务
@@ -123,14 +130,23 @@ docker compose down -v
 - 需提前创建 `dsp-job` 数据库
 - 连接外部 MySQL（非本服务的 MySQL）
 
+### MinIO
+
+- S3 API 地址：`http://localhost:9000`
+- 控制台地址：`http://localhost:9001`
+- 默认账号：`admin`
+- 默认密码：`12345678`
+- 数据目录：`minio/data/`（已 gitignore）
+
 ## 网络说明
 
-MySQL、Redis、Nacos、Elasticsearch 共享 `ad-net` 网络，可通过容器名互相访问：
+MySQL、Redis、Nacos、Elasticsearch、MinIO 共享 `ad-net` 网络，可通过容器名互相访问：
 
 - `mysql8`
 - `redis7`
 - `nacos-server`
 - `elasticsearch`
+- `minio`
 
 ## 注意事项
 
