@@ -1,7 +1,8 @@
 services:
   minio:
-    image: minio/minio:latest
+    image: cgr.dev/chainguard/minio:latest
     container_name: minio
+    user: "0:0"
     environment:
       MINIO_ROOT_USER: admin
       MINIO_ROOT_PASSWORD: 12345678

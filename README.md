@@ -132,6 +132,7 @@ docker compose down -v
 
 ### MinIO
 
+- 镜像：`cgr.dev/chainguard/minio:latest`
 - S3 API 地址：`http://localhost:9000`
 - 控制台地址：`http://localhost:9001`
 - 默认账号：`admin`
