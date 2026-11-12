@@ -4,3 +4,5 @@ redis/data
 nacos/logs
 postgres/data
 minio/data
+kafka/data
+milvus/data
