@@ -1,0 +1,25 @@
+services:
+  srs:
+    image: ossrs/srs:latest
+    container_name: live-srs
+    restart: unless-stopped
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      CANDIDATE: ${SRS_CANDIDATE}
+    command: ["./objs/srs", "-c", "conf/live-srs.conf"]
+    ports:
+      - "1935:1935/tcp"      # RTMP
+      - "1985:1985/tcp"      # HTTP API
+      - "18080:8080/tcp"     # HTTP server (WebRTC player)
+      - "1990:1990/tcp"      # RTC TCP fallback
+      - "8000:8000/udp"      # WebRTC UDP
+      - "8000:8000/tcp"      # WebRTC TCP
+    volumes:
+      - ./conf/srs.conf:/usr/local/srs/conf/live-srs.conf:ro
+    networks:
+      - ad-net
+
+networks:
+  ad-net:
+    external: true
